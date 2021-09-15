@@ -39,7 +39,7 @@ function checkAnswers(e) {
 
 	UserAnswers.forEach((answer, index) => {
 		if (answer === correctAnswers[index]) {
-			score += 8.3333;
+			score += 10;
 		}
 	});
 
@@ -47,7 +47,16 @@ function checkAnswers(e) {
 
 	result.classList.remove('d-none');
 
-	result.querySelector('span').textContent = Math.ceil(score);
+	let output = 0;
+	// increase the score
+	let timer = setInterval(() => {
+		result.querySelector('span').textContent = output;
+		if (output === score) {
+			clearInterval(timer);
+		} else {
+			output++;
+		}
+	}, 10);
 }
 
 // adding event listener to form
